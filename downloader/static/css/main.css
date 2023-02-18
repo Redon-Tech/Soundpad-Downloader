@@ -1,0 +1,9 @@
+body {
+    padding-top: 120px;
+}
+
+.list-unstyled li {
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;
+}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div style="text-align: center;" class="col-lg-12">
+            <h1 class="modal-header">Search</h1>
+        </div>
+
+        <div class="col-lg-12">
+            <form action="/search" method="POST" id="searchform2">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" id="searchfor2">
+                    <button class="btn btn-secondary" type="submit" id="button-addon2">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div style="text-align: center" class="col-lg-12">
+            <p id="loading" hidden>Loading...</p>
+            <table style="vertical-align: middle;" id="videos" class="table table-bordered table-striped">
+                <colgroup>
+                    <col span="1" style="width: 1%;">
+                    </col>
+                    <col span="1" style="width: 5%;">
+                    </col>
+                    <col span="1" style="width: 25%;">
+                    </col>
+                    <col span="1" style="width: 5%;">
+                    </col>
+                    <col span="1" style="width: 5%;">
+                    </col>
+                    <col span="1" style="width: 5%;">
+                    </col>
+                </colgroup>
+
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Thumbnail</th>
+                        <th>Title</th>
+                        <th>Channel</th>
+                        <th>Info</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="here">
+                    <!-- <tr>
+                        <td>1</td>
+                        <td><img src="https://i.ytimg.com/vi/1q2w3e4r5t6y7u8i9o0p/0.jpg" alt="Thumbnail"></td>
+                        <td>Test</td>
+                        <td>Test</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary">Download 1</button>
+                                <button type="button" class="btn btn-info">Download 2</button>
+                            </div>
+                        </td>
+                    </tr> -->
+                    {% if videos %}
+                    {% for index, video in videos.items() %}
+                    <tr>
+                        <td>{{ index }}</td>
+                        <td><img style="width: 120px; height: 90px;" src="{{ video.thumbnails[0] }}" alt="Thumbnail">
+                        </td>
+                        <td>{{ video.title }}</td>
+                        <td>{{ video.channel }}</td>
+                        <td>{{ video.views }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="/download/{{ video.id }}/1" class="btn btn-primary">Download 1</a>
+                                <a href="/download/{{ video.id }}/2" class="btn btn-info">Download 2</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+                <tfoot>
+                    <th>Number</th>
+                    <th>Thumbnail</th>
+                    <th>Title</th>
+                    <th>Channel</th>
+                    <th>Info</th>
+                    <th>Action</th>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    document.getElementById("searchform2").addEventListener("submit", function (event) {
+        event.preventDefault()
+        window.location.href = `/search?search=${document.getElementById("searchfor2").value}`;
+    });
+
+    if (urlParams.get("search")) {
+        document.getElementById("searchfor").value = urlParams.get("search");
+        document.getElementById("searchfor2").value = urlParams.get("search");
+        var a = document.getElementsByTagName('a');
+        var href;
+
+        for (var i = 0; i < a.length; i++) {
+            a[i].href += `?search=${urlParams.get("search")}`;
+        }
+    }
+</script>
+{% endblock %}
