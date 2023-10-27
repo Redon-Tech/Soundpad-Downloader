@@ -4,7 +4,7 @@ app = create_app()
 
 
 def main():
-    app.run(host="10.0.0.159", debug=True)
+    app.run(host="0.0.0.0", debug=True)
 
 
 if __name__ == "__main__":
