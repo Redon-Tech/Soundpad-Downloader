@@ -71,8 +71,15 @@
                         <td>{{ video.views }}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="/download/{{ video.id }}/1" class="btn btn-primary">Download 1</a>
-                                <a href="/download/{{ video.id }}/2" class="btn btn-info">Download 2</a>
+                                <a href="/download/{{ video.id }}/1/{{ video.title | urlencode }}"
+                                    class="btn btn-primary">Download
+                                    1</a>
+                                <a href="/download/{{ video.id }}/2/{{ video.title | urlencode }}"
+                                    class="btn btn-info">Download
+                                    2</a>
+                                <a href="/download/{{ video.id }}/perm/{{ video.title | urlencode }}"
+                                    class="btn btn-success">Perm
+                                    Download</a>
                             </div>
                         </td>
                     </tr>
