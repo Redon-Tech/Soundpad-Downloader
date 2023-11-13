@@ -1,5 +1,5 @@
 yt-dlp==2023.10.07
-aiohttp==3.8.4
+aiohttp==3.8.5
 flask==2.2.5
 python-dotenv==0.21.0
 youtube-search==2.1.2
